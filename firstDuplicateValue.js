@@ -49,12 +49,25 @@
 //look and return a value from the set requires just O(1) constant space.
 
 //O(n) time | O(n) space complexity
+// function firstDuplicateValue(array) {
+//   // Write your code here.
+//   const seenNumbers = new Set();
+//   for (const value of array) {
+//     if (seenNumbers.has(value)) return value;
+//     seenNumbers.add(value);
+//   }
+//   return -1;
+// }
+
+//Below is a linear runtime with a constant space optimization 
+//using absolute values.
+
+//O(n) time | O(1) space complexity
 function firstDuplicateValue(array) {
-  // Write your code here.
-  const seenNumbers = new Set();
-  for (const value of array) {
-    if (seenNumbers.has(value)) return value;
-    seenNumbers.add(value);
+  for(const value of array) {
+    const absValue = Math.abs(value);
+    if(array[absValue - 1] < 0) return absValue;
+    array[absValue - 1] *= -1;
   }
   return -1;
 }
